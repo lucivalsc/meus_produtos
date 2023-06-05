@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meus_produtos/model/meus_produtos_model.dart';
+import 'package:meus_produtos/app/layers/data/model/meus_produtos_model.dart';
 
 class BottomNaivationBarPadrao extends StatefulWidget {
   final ProdutosModel dados;
@@ -34,8 +34,9 @@ class _BottomNaivationBarPadraoState extends State<BottomNaivationBarPadrao> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle: Text(
-                  '${widget.qtdeItem > 1 ? '${widget.qtdeItem} itens' : 'Nenhum item'}'),
+              subtitle: Text(widget.qtdeItem > 1
+                  ? '${widget.qtdeItem} itens'
+                  : 'Nenhum item'),
             ),
           ),
           //Botão inferior da cesta de produtos

@@ -2,22 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:meus_produtos/model/meus_produtos_model.dart';
+import 'package:meus_produtos/app/layers/data/model/meus_produtos_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 class ServicoHttp {
   Future<ProdutosModel> produtosApi(String codigo) async {
-    String caminho = 'http://www.eanpictures.com.br:9000/api/desc/$codigo';
-    // String caminhoImagem =
-    //     'http://www.eanpictures.com.br:9000/api/gtin/$codigo';
-    var url = Uri.parse(caminho);
+    String baserUrl = 'http://www.eanpictures.com.br:9000/api/desc/$codigo';
+    var url = Uri.parse(baserUrl);
     var response = await http.get(url);
     if (codigo.isNotEmpty) {
       if (response.statusCode == 200) {
-        // await downloadFile(caminhoImagem, '$codigo');
         Map<String, dynamic> body = jsonDecode(response.body);
         ProdutosModel lista = ProdutosModel.fromJson(body);
-
         return lista;
       } else {
         return ProdutosModel();
@@ -29,8 +25,7 @@ class ServicoHttp {
 
   Future<String> downloadFile(String url, String nomeArquivo) async {
     Armazenar armazenar = Armazenar();
-    var _path = await armazenar.nomeArquivo(nomeArquivo);
-
+    var path = await armazenar.nomeArquivo(nomeArquivo);
     HttpClient httpClient = HttpClient();
     File file;
     String filePath = '';
@@ -42,11 +37,12 @@ class ServicoHttp {
       var response = await request.close();
       if (response.statusCode == 200) {
         var bytes = await consolidateHttpClientResponseBytes(response);
-        filePath = _path;
+        filePath = path;
         file = File(filePath);
         await file.writeAsBytes(bytes);
-      } else
-        filePath = 'Error code: ' + response.statusCode.toString();
+      } else {
+        filePath = 'Error code: ${response.statusCode}';
+      }
     } catch (ex) {
       filePath = 'Can not fetch url';
     }

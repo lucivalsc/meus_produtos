@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:meus_produtos/view/meus_produtos_view.dart';
+import 'package:meus_produtos/app/layers/presenter/screens/principal_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: const Principal(),
+      home: const PrincipalScreen(),
     );
   }
 }

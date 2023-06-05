@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meus_produtos/data/botao.dart';
-import 'package:meus_produtos/data/detalhes_itens.dart';
-import 'package:meus_produtos/model/meus_produtos_model.dart';
+import 'package:meus_produtos/app/common/widgets/botao.dart';
+import 'package:meus_produtos/app/common/widgets/detalhes_itens.dart';
+import 'package:meus_produtos/app/layers/data/model/meus_produtos_model.dart';
 
 class DescricaoDados extends StatefulWidget {
   final ProdutosModel dados;
@@ -41,9 +41,15 @@ class _DescricaoDadosState extends State<DescricaoDados> {
                 child: Text(
                   'R\$ $valorItem',
                   style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(229, 130, 40, 1)),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(
+                      229,
+                      130,
+                      40,
+                      1,
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -74,7 +80,7 @@ class _DescricaoDadosState extends State<DescricaoDados> {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
-        DadosDescricao(EAN: widget.ean, dados: widget.dados),
+        DadosDescricao(ean: widget.ean, dados: widget.dados),
       ],
     );
   }

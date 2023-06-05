@@ -11,6 +11,7 @@ class ProdutosModel {
   String? peso;
   String? idCategoria;
   String? tributacao;
+  String? valor;
 
   ProdutosModel();
 
@@ -27,22 +28,24 @@ class ProdutosModel {
     peso = json['Peso'];
     idCategoria = json['id_categoria'];
     tributacao = json['tributacao'];
+    valor = json['valor'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Status'] = this.status;
-    data['Status_Desc'] = this.statusDesc;
-    data['Nome'] = this.nome;
-    data['Ncm'] = this.ncm;
-    data['Cest_Codigo'] = this.cestCodigo;
-    data['Embalagem'] = this.embalagem;
-    data['QuantidadeEmbalagem'] = this.quantidadeEmbalagem;
-    data['Marca'] = this.marca;
-    data['Categoria'] = this.categoria;
-    data['Peso'] = this.peso;
-    data['id_categoria'] = this.idCategoria;
-    data['tributacao'] = this.tributacao;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Status'] = status;
+    data['Status_Desc'] = statusDesc;
+    data['Nome'] = nome;
+    data['Ncm'] = ncm;
+    data['Cest_Codigo'] = cestCodigo;
+    data['Embalagem'] = embalagem;
+    data['QuantidadeEmbalagem'] = quantidadeEmbalagem;
+    data['Marca'] = marca;
+    data['Categoria'] = categoria;
+    data['Peso'] = peso;
+    data['id_categoria'] = idCategoria;
+    data['tributacao'] = tributacao;
+    data['valor'] = valor;
     return data;
   }
 }
